@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nguồn học Next.js 14 miễn phí
 
-## Getting Started
+> Tặng các bạn Voucher giảm giá 100k khi mua khóa học tại edu.duthanhduoc.com: `YOUTUBE`
 
-First, run the development server:
+Đây là khóa học miễn phí, mình còn có một khóa có phí nữa, nếu các bạn thấy cách dạy của mình hay và phù hợp thì có thể mua khóa Next.Js nâng cao của mình.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Hoặc đơn giản là muốn ủng hộ mình thì có thể mua cũng được 😂
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Để nhận link github và thông báo mới khi mình có khóa Next.js trả phí submit github tại [đây](https://duthanhduoc.com/courses/nextjs-super)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Giới thiệu
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Dự án: Shop bán hàng đơn giản
+- Công nghệ: Backend Fastify và FrontEnd Next.js
 
-## Learn More
+Chức năng:
 
-To learn more about Next.js, take a look at the following resources:
+- Đăng ký, đăng nhập
+- Thêm sửa xóa sản phẩm
+- Xem sản phẩm
+- SEO cơ bản
+- Quản lý authentication
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tại sao chức năng lại đơn giản vậy?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Chức năng phức tạp thì nó cũng chỉ xoay quanh React.Js thôi. Còn Next.js cũng chỉ quanh đi quẩn lại React.Js nên mình sẽ xoay quanh cái framework này chứ không phải xoay quanh chức năng business.
