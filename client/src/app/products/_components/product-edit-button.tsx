@@ -5,13 +5,8 @@ import { isClient } from '@/lib/http'
 import { ProductListResType } from '@/schemaValidations/product.schema'
 import Link from 'next/link'
 
-export default function ProductEditButton({
-  product
-}: {
-  product: ProductListResType['data'][0]
-}) {
-  const isAuthenticated =
-    isClient() && Boolean(localStorage.getItem('sessionToken'))
+export default function ProductEditButton({ product }: { product: ProductListResType['data'][0] }) {
+  const isAuthenticated = isClient() && Boolean(localStorage.getItem('sessionToken'))
   if (!isAuthenticated) return null
   return (
     <div className='flex space-x-2 items-start'>

@@ -3,14 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { useToast } from '@/components/ui/use-toast'
 import { useRouter } from 'next/navigation'
@@ -49,21 +42,12 @@ const ProductAddForm = ({ product }: { product?: Product }) => {
       formData.append('file', file as Blob)
       const uploadImageResult = await productApiRequest.uploadImage(formData)
       const imageUrl = uploadImageResult.payload.data
-      const result = await productApiRequest.create({
-        ...values,
-        image: imageUrl
-      })
-
-      toast({
-        description: result.payload.message
-      })
+      const result = await productApiRequest.create({ ...values, image: imageUrl })
+      toast({ description: result.payload.message })
       router.push('/products')
       router.refresh()
     } catch (error: any) {
-      handleErrorApi({
-        error,
-        setError: form.setError
-      })
+      handleErrorApi({ error, setError: form.setError })
     } finally {
       setLoading(false)
     }
@@ -79,23 +63,13 @@ const ProductAddForm = ({ product }: { product?: Product }) => {
         formData.append('file', file as Blob)
         const uploadImageResult = await productApiRequest.uploadImage(formData)
         const imageUrl = uploadImageResult.payload.data
-        values = {
-          ...values,
-          image: imageUrl
-        }
+        values = { ...values, image: imageUrl }
       }
-
       const result = await productApiRequest.update(product.id, values)
-
-      toast({
-        description: result.payload.message
-      })
+      toast({ description: result.payload.message })
       router.refresh()
     } catch (error: any) {
-      handleErrorApi({
-        error,
-        setError: form.setError
-      })
+      handleErrorApi({ error, setError: form.setError })
     } finally {
       setLoading(false)
     }
@@ -197,9 +171,7 @@ const ProductAddForm = ({ product }: { product?: Product }) => {
               onClick={() => {
                 setFile(null)
                 form.setValue('image', '')
-                if (inputRef.current) {
-                  inputRef.current.value = ''
-                }
+                if (inputRef.current) inputRef.current.value = ''
               }}
             >
               Xóa hình ảnh

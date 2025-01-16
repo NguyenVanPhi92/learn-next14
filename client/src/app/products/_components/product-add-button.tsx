@@ -4,8 +4,7 @@ import { isClient } from '@/lib/http'
 import Link from 'next/link'
 
 export default function ProductAddButton() {
-  const isAuthenticated =
-    isClient() && Boolean(localStorage.getItem('sessionToken'))
+  const isAuthenticated = isClient() && Boolean(localStorage.getItem('sessionToken'))
   if (!isAuthenticated) return null
   return (
     <Link href={'/products/add'}>
