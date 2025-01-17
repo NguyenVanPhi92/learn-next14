@@ -1,6 +1,6 @@
 import z from 'zod'
 
-// khai báo các rule validate form
+// Khai Báo Rule Form Input Validate
 export const RegisterBody = z
   .object({
     name: z.string().trim().min(2).max(256),

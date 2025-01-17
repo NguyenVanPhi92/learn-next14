@@ -3,37 +3,25 @@ import { normalizePath } from '@/lib/utils'
 import { LoginResType } from '@/schemaValidations/auth.schema'
 import { redirect } from 'next/navigation'
 
-type CustomOptions = Omit<RequestInit, 'method'> & {
-  baseUrl?: string | undefined
-}
-
+type CustomOptions = Omit<RequestInit, 'method'> & { baseUrl?: string | undefined }
 const ENTITY_ERROR_STATUS = 422
 const AUTHENTICATION_ERROR_STATUS = 401
+type EntityErrorPayload = { message: string; errors: { field: string; message: string }[] }
 
-type EntityErrorPayload = {
-  message: string
-  errors: {
-    field: string
-    message: string
-  }[]
-}
-
+// khai báo class HTTP ERROR
 export class HttpError extends Error {
   status: number
-  payload: {
-    message: string
-    [key: string]: any
-  }
+  payload: { message: string; [key: string]: any }
   constructor({ status, payload }: { status: number; payload: any }) {
     super('Http Error')
     this.status = status
     this.payload = payload
   }
 }
-
+// khai báo class ENTITY ERROR
 export class EntityError extends HttpError {
-  status: 422
-  payload: EntityErrorPayload
+  status: 422 // trạng thái lỗi
+  payload: EntityErrorPayload // nội dung lỗi
   constructor({ status, payload }: { status: 422; payload: EntityErrorPayload }) {
     super({ status, payload })
     this.status = status
@@ -42,11 +30,13 @@ export class EntityError extends HttpError {
 }
 
 let clientLogoutRequest: null | Promise<any> = null
-export const isClient = () => typeof window !== 'undefined'
+export const isClient = () => typeof window !== 'undefined' // khai báo xác định đang dùng client hay server
+
+// khai báo các fETCH API, request gửi lên server
 const request = async <Response>(
-  method: 'GET' | 'POST' | 'PUT' | 'DELETE',
-  url: string,
-  options?: CustomOptions | undefined
+  method: 'GET' | 'POST' | 'PUT' | 'DELETE', // giao thức
+  url: string, // path
+  options?: CustomOptions | undefined // các config header content type
 ) => {
   let body: FormData | string | undefined = undefined
   if (options?.body instanceof FormData) {
@@ -54,28 +44,18 @@ const request = async <Response>(
   } else if (options?.body) {
     body = JSON.stringify(options.body)
   }
-  const baseHeaders: {
-    [key: string]: string
-  } = body instanceof FormData ? {} : { 'Content-Type': 'application/json' }
+  const baseHeaders: { [key: string]: string } = body instanceof FormData ? {} : { 'Content-Type': 'application/json' }
   if (isClient()) {
     const sessionToken = localStorage.getItem('sessionToken')
-    if (sessionToken) {
-      baseHeaders.Authorization = `Bearer ${sessionToken}`
-    }
+    if (sessionToken) baseHeaders.Authorization = `Bearer ${sessionToken}`
   }
   // Nếu không truyền baseUrl (hoặc baseUrl = undefined) thì lấy từ envConfig.NEXT_PUBLIC_API_ENDPOINT
   // Nếu truyền baseUrl thì lấy giá trị truyền vào, truyền vào '' thì đồng nghĩa với việc chúng ta gọi API đến Next.js Server
-
   const baseUrl = options?.baseUrl === undefined ? envConfig.NEXT_PUBLIC_API_ENDPOINT : options.baseUrl
-
   const fullUrl = url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`
-
   const res = await fetch(fullUrl, {
     ...options,
-    headers: {
-      ...baseHeaders,
-      ...options?.headers
-    } as any,
+    headers: { ...baseHeaders, ...options?.headers } as any,
     body,
     method
   })
@@ -84,21 +64,14 @@ const request = async <Response>(
   // Interceptor là nời chúng ta xử lý request và response trước khi trả về cho phía component
   if (!res.ok) {
     if (res.status === ENTITY_ERROR_STATUS) {
-      throw new EntityError(
-        data as {
-          status: 422
-          payload: EntityErrorPayload
-        }
-      )
+      throw new EntityError(data as { status: 422; payload: EntityErrorPayload })
     } else if (res.status === AUTHENTICATION_ERROR_STATUS) {
       if (isClient()) {
         if (!clientLogoutRequest) {
           clientLogoutRequest = fetch('/api/auth/logout', {
             method: 'POST',
             body: JSON.stringify({ force: true }),
-            headers: {
-              ...baseHeaders
-            } as any
+            headers: { ...baseHeaders } as any
           })
           try {
             await clientLogoutRequest
@@ -132,6 +105,7 @@ const request = async <Response>(
   return data
 }
 
+// khai báo HTTP API
 const http = {
   get<Response>(url: string, options?: Omit<CustomOptions, 'body'> | undefined) {
     return request<Response>('GET', url, options)
@@ -146,5 +120,4 @@ const http = {
     return request<Response>('DELETE', url, { ...options })
   }
 }
-
 export default http

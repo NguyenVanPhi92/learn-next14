@@ -5,6 +5,7 @@ import { UseFormSetError } from 'react-hook-form'
 import { twMerge } from 'tailwind-merge'
 import jwt from 'jsonwebtoken'
 
+// Khai Báo Các Method Until Dùng CHung
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }

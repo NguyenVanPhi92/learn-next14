@@ -8,6 +8,7 @@ import {
 } from '@/schemaValidations/auth.schema'
 import { MessageResType } from '@/schemaValidations/common.schema'
 
+// khai Báo Method Call API & Config Reponse Trả Về Khi Gọi API
 const authApiRequest = {
   login: (body: LoginBodyType) => http.post<LoginResType>('/auth/login', body),
   register: (body: RegisterBodyType) => http.post<RegisterResType>('/auth/register', body),

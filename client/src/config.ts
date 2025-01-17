@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+// Khai Báo Rule Validate biến Môi Trường
 const configSchema = z.object({
   NEXT_PUBLIC_API_ENDPOINT: z.string(),
   NEXT_PUBLIC_URL: z.string()

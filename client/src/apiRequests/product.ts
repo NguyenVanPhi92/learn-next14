@@ -7,6 +7,7 @@ import {
   UpdateProductBodyType
 } from '@/schemaValidations/product.schema'
 
+// khai Báo Method Call API & Config Reponse Trả Về Khi Gọi API
 const productApiRequest = {
   getList: () => http.get<ProductListResType>('/products'),
   getDetail: (id: number) => http.get<ProductResType>(`/products/${id}`, { cache: 'no-store' }),

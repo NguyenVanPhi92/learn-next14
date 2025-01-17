@@ -18,12 +18,12 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
   const [loading, setLoading] = useState(false)
   const { toast } = useToast()
   const router = useRouter()
+  // khai báo form value dùng useForm trong react hook form
   const form = useForm<UpdateMeBodyType>({
-    resolver: zodResolver(UpdateMeBody),
-    defaultValues: { name: profile.name }
+    resolver: zodResolver(UpdateMeBody), // khai báo các rule validate form và react hook form
+    defaultValues: { name: profile.name } // khai báo file value default
+    // 2. Define a submit handler.
   })
-
-  // 2. Define a submit handler.
   async function onSubmit(values: UpdateMeBodyType) {
     if (loading) return
     setLoading(true)
@@ -38,6 +38,7 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
     }
   }
   return (
+    // Đưa React Hook Form Vào Form
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-2 max-w-[600 px] flex-shrink-0 w-full' noValidate>
         <FormLabel>Email</FormLabel>
@@ -45,7 +46,6 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
           <Input placeholder='shadcn' type='email' value={profile.email} readOnly />
         </FormControl>
         <FormMessage />
-
         <FormField
           control={form.control}
           name='name'
@@ -59,7 +59,7 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
             </FormItem>
           )}
         />
-
+        {/* Button Submit Form */}
         <Button type='submit' className='!mt-8 w-full'>
           Cập nhật
         </Button>
