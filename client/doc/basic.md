@@ -26,11 +26,13 @@ Next.js là một framework mã nguồn mở (open-source) được xây dựng 
 
 - Cần Server-Side Rendering (SSR) hoặc Static Site Generation (SSG)
 - Cần tối ưu hóa SEO
-- Cần tích hợp backend và frontend trong cùng một dự án
+- Cần tích hợp backend và frontend trong cùng một dự án với những dự án nhỏ
 - Cần tối ưu hóa hiệu suất
 - Cần hỗ trợ đa ngôn ngữ (i18n)
 - Cần triển khai dễ dàng
 - Cần hỗ trợ Middleware
+  SSR 👉 Dùng cho web có nội dung thay đổi thường xuyên (news, social media, e-commerce).
+  SSG 👉 Dùng cho website tĩnh (blog, landing page, documentation).
 
 ## Dùng React.js khi:
 
@@ -39,6 +41,7 @@ Next.js là một framework mã nguồn mở (open-source) được xây dựng 
 - Cần tùy chỉnh cao
 - Dự án không yêu cầu SEO
 - Cần tích hợp với các thư viện hoặc framework khác
+  👉 Phù hợp với web app động (dashboard, admin panel, ứng dụng có tương tác nhiều)
 
 ## API
 

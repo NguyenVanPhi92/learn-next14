@@ -15,10 +15,11 @@
 15. CSR là gì?
 16. ISR là gì?
 17. Automatic Static Optimization là gì?
-18. GetStaticProps trong Nextjs là gì?
-19. GetStaticPaths trong Nextjs là gì?
-20. SSG and Data Fetching on client side như thế nào?
-21. Cách Setup dynamic layout như thế nào?
-22. Proxy request to API server trong Nextjs?
-23. SWR là gì?
-24. Page Route là gì App Route là gì? sự khác nhau giữa 2 cái này?
+18. API Route trong Nextjs là gì?
+19. GetStaticProps trong Nextjs là gì?
+20. GetStaticPaths trong Nextjs là gì?
+21. SSG and Data Fetching on client side như thế nào?
+22. Cách Setup dynamic layout như thế nào?
+23. Proxy request to API server trong Nextjs?
+24. SWR là gì?
+25. Page Route là gì App Route là gì? sự khác nhau giữa 2 cái này?
